@@ -1,0 +1,34 @@
+[
+	{
+			"tableNumber" : 1,
+			"open" : false,
+			"discount" : 0,
+			"dinerCount" : 4,
+      "served": [],
+      "openAt": false
+	},
+	{
+			"tableNumber" : 2,
+			"open" : false,
+			"discount" : 0,
+			"dinerCount" : 4,
+      "served": [],
+      "openAt": false
+	},
+	{
+			"tableNumber" : 3,
+			"open" : false,
+			"discount" : 0,
+			"dinerCount" : 2,
+      "served": [],
+      "openAt": false
+	},
+  {
+			"tableNumber" : 4,
+			"open" : false,
+			"discount" : 0,
+			"dinerCount" : 2,
+      "served": [],
+      "openAt": false
+	}
+]

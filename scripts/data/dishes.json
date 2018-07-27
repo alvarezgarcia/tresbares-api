@@ -1,0 +1,38 @@
+[
+  {
+    "productId": 1,
+    "category": "CERVEZA",
+    "name": "Cerveza Artesanal Roja 660 mL",
+    "price": 70
+  },
+  {
+    "productId": 2,
+    "category": "CERVEZA",
+    "name": "Cerveza Artesanal Negra 660 mL",
+    "price": 75
+  },
+  {
+    "productId": 3,
+    "category": "HAMBURGUESA",
+    "name": "Hamburguesa Ternera, doble queso",
+    "price": 120
+  },
+  {
+    "productId": 4,
+    "category": "HAMBURGUESA",
+    "name": "Hamburguesa Ternera, doble queso y panceta",
+    "price": 140
+  },
+  {
+    "productId": 5,
+    "category": "PIZZA",
+    "name": "Mozzarella",
+    "price": 110
+  },
+  {
+    "productId": 6,
+    "category": "PIZZA",
+    "name": "Calabresa",
+    "price": 130
+  }
+]
