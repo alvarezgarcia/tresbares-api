@@ -77,10 +77,54 @@ async function deleteDish(req, res, next) {
   }
 }
 
+async function openTable(req, res, next) {
+  const {tableId} = req.params;
+
+  try {
+    const collection = mongoDb.getConnection(collectionName);
+    const ok = await collection.update({_id: ObjectId(tableId)}, {$set: {open: true, openAt: new Date()}});
+
+    if (!ok) {
+      const error = new Error('Could not open table');
+      error.status = 500;
+
+      return next(error);
+    }
+
+    res.status(204);
+    return res.send();
+  } catch (err) {
+    return next(err);
+  }
+}
+
+async function closeTable(req, res, next) {
+  const {tableId} = req.params;
+
+  try {
+    const collection = mongoDb.getConnection(collectionName);
+    const ok = await collection.update({_id: ObjectId(tableId)}, {$set: {open: false, openAt: false}});
+
+    if (!ok) {
+      const error = new Error('Could not close table');
+      error.status = 500;
+
+      return next(error);
+    }
+
+    res.status(204);
+    return res.send();
+  } catch (err) {
+    return next(err);
+  }
+}
+
 
 module.exports = {
   get,
   getAll,
   addDish,
-  deleteDish
+  deleteDish,
+  openTable,
+  closeTable
 };

@@ -6,6 +6,8 @@ const router = express.Router();
 
 router.delete('/:tableId/dish/:dishId', tableController.deleteDish);
 router.post('/:tableId/dish', tableController.addDish);
+router.post('/:tableId/open', tableController.openTable);
+router.post('/:tableId/close', tableController.closeTable);
 router.get('/:tableId', tableController.get);
 router.get('/', tableController.getAll);
 
