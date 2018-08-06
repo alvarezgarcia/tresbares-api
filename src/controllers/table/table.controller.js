@@ -82,7 +82,7 @@ async function openTable(req, res, next) {
 
   try {
     const collection = mongoDb.getConnection(collectionName);
-    const ok = await collection.update({_id: ObjectId(tableId)}, {$set: {open: true, openAt: new Date()}});
+    const ok = await collection.update({_id: ObjectId(tableId)}, {$set: {open: true, openAt: new Date(), served: []}});
 
     if (!ok) {
       const error = new Error('Could not open table');
@@ -103,7 +103,7 @@ async function closeTable(req, res, next) {
 
   try {
     const collection = mongoDb.getConnection(collectionName);
-    const ok = await collection.update({_id: ObjectId(tableId)}, {$set: {open: false, openAt: false}});
+    const ok = await collection.update({_id: ObjectId(tableId)}, {$set: {open: false, openAt: false, served: []}});
 
     if (!ok) {
       const error = new Error('Could not close table');

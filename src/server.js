@@ -11,6 +11,8 @@ const port = 5555;
 
 const app = express();
 
+app.use(morgan('dev'));
+
 app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*');
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
@@ -24,7 +26,6 @@ app.use(bodyParser.urlencoded({extended: false}));
 
 app.use(router);
 
-app.use(morgan('dev'));
 
 async function start(mongoUri) {
   await mongoDb.connect(mongoUri);
