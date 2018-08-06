@@ -57,11 +57,11 @@ async function addDish(req, res, next) {
 }
 
 async function deleteDish(req, res, next) {
-  const {tableId, dishId} = req.params;
+  const {tableId, idServed} = req.params;
 
   try {
     const collection = mongoDb.getConnection(collectionName);
-    const ok = await collection.update({_id: ObjectId(tableId)}, {$pull: {served: { id: parseInt(dishId) } }});
+    const ok = await collection.update({_id: ObjectId(tableId)}, {$pull: {served: { idServed: parseInt(idServed) } }});
 
     if (!ok) {
       const error = new Error('Dish not deleted');
