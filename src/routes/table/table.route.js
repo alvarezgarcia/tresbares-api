@@ -4,7 +4,7 @@ const tableController = require('./../../controllers/table/table.controller');
 
 const router = express.Router();
 
-router.delete('/:tableId/dish/:dishId', tableController.deleteDish);
+router.delete('/:tableId/dish/:idServed', tableController.deleteDish);
 router.post('/:tableId/dish', tableController.addDish);
 router.post('/:tableId/open', tableController.openTable);
 router.post('/:tableId/close', tableController.closeTable);
