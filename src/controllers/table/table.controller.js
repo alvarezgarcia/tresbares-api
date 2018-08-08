@@ -103,7 +103,7 @@ async function closeTable(req, res, next) {
 
   try {
     const collection = mongoDb.getConnection(collectionName);
-    const ok = await collection.update({_id: ObjectId(tableId)}, {$set: {open: false, openAt: false, served: []}});
+    const ok = await collection.update({_id: ObjectId(tableId)}, {$set: {open: false, openAt: false}});
 
     if (!ok) {
       const error = new Error('Could not close table');
