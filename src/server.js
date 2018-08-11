@@ -28,15 +28,16 @@ app.use(router);
 
 
 async function start(mongoUri) {
-  await mongoDb.connect(mongoUri);
-  console.log('Connected to mongoDB');
+  try {
+    await mongoDb.connect(mongoUri);
+    console.log('Connected to mongoDB');
 
-  console.log(`Listening on port ${port}`);
-  await app.listen(port);
+    console.log(`Listening on port ${port}`);
+    await app.listen(port);
+  } catch (err) {
+    console.log(err)
+    return process.exit(1);
+  }
 }
 
-try {
-  start(mongoUri);  
-} catch (err) {
-  console.log('Err', err);
-}
+return start(mongoUri);  
