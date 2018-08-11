@@ -1,0 +1,16 @@
+version: "2"
+services:
+  api:
+    build: .
+    volumes:
+    - ./:/app
+    ports:
+    - "5555:5555"
+    links:
+    - mongo
+  mongo:
+    image: mongo
+    volumes:
+    - /mongo/data
+    ports:
+    - "27017:27017"
