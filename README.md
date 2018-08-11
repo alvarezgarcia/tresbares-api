@@ -4,18 +4,35 @@
 
 ## Instalación
 
-### Alimentar la base de datos con ejemplos
+### Con Docker
 
-Para que la base de datos tenga información sobre los dos recursos que entrega esta API (tables y dishes)
-fueron creados dos scripts que precargan una base de datos llamada `tres-bares` (si no existe la crea
-automáticamente) con una lista de mesas posibles así como también un listado hipotético de platos a servir.
-
-Los scripts para realizar ésto están en la carpeta `scripts/` y se ejecutan de la siguiente manera:
+Con `docker` y `docker-compose` previamente instalado (en el caso de Ubuntu los descargué directamente de la paquetería).
+Ejecutar los siguientes comandos:
 
 ```
-$ node 01-load-tables.js #para precargar información de las mesas
-$ node 02-load-products.js #para precargar información de los productos
+$ npm i
+$ docker-compose up
 ```
+El primer comando simplemente instala las dependencias de NodeJS.
+El segundo inicia dos containers (esto se puede ver bien en `docker-compose.yml`) uno para la API y otro para mongo,
+expone los puertos de cada contenedor a puertos de la máquina local y por último monta el directorio local en el container
+de Node, así puede acceder a las dependencias que se instalaron con el comando anterior además de poder leer los cambios
+que se hagan en la API.
+
+
+### Sin Docker
+
+Sin docker es necesario tener las siguientes dependencias instaladas
+
+- node 8 o superior
+- mongo 3 o superior
+
+```
+$ npm i
+$ npm run dev
+```
+
+## Precargar base de datos
 
 Los scripts preguntarán previamente si se decide eliminar los posibles anteriores valores que puedan encontrarse
 en cada colección (colección es el nombre que usa mongo para lo que en un ambiente SQL sería tabla), de ésta forma
@@ -26,11 +43,15 @@ el que es leído e insertado por el script `01-load-tables.js` y `dishes.json` u
 Es fundamental no tocar los nombres de los campos, pero si hay total libertad en agregar más entradas o modificar los valores
 de los campos.
 
-### Dependencias y ejecución
-
-Es necesario tener corriendo una instancia de Mongo
-
+### Con Docker
 ```
-$ npm i
-$ npm run dev
+$ docker-compose run --rm api node scripts/01-load-tables.js
+$ docker-compose run --rm api node scripts/02-load-products.js
+```
+Estos dos scripts se ejecutan internamente en el contenedor de Mongo
+
+### Sin Docker
+```
+$ node 01-load-tables.js #para precargar información de las mesas
+$ node 02-load-products.js #para precargar información de los productos
 ```
